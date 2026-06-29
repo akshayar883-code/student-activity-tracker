@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Hackathon 2 .Akshaya</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>Student Activity Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white; /* plain white background */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: dodgerblue; /* header in blue */
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        .activity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .completed {
+            color: green; /* completed tasks in green */
+        }
+
+        .pending {
+            color: red; /* pending tasks in red */
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: dodgerblue;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: green;
+        }
+
+        .progress {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>Student Activity Tracker</h2>
+    <p>Track your daily learning progress</p>
+</header>
+
+<div class="container">
+    <div id="activityList"></div>
+    <div class="progress" id="progressText"></div>
+</div>
+
+<script>
+    const activities = [
+        { name: "Learn HTML", completed: false },
+        { name: "Practice CSS", completed: false },
+        { name: "JavaScript Basics", completed: false },
+        { name: "Mini Project", completed: false },
+        { name: "Assignment Submission", completed: false },
+        { name: "Mock Test", completed: false }
+    ];
+
+    const activityList = document.getElementById("activityList");
+    const progressText = document.getElementById("progressText");
+
+    function displayActivities() {
+        activityList.innerHTML = "";
+
+        activities.forEach((activity, index) => {
+            const div = document.createElement("div");
+            div.className = "activity";
+
+            const span = document.createElement("span");
+            span.textContent = activity.name + " - " + (activity.completed ? "Completed" : "Pending");
+            span.className = activity.completed ? "completed" : "pending";
+
+            const button = document.createElement("button");
+            button.textContent = activity.completed ? "Completed" : "Mark as Completed";
+            button.disabled = activity.completed;
+
+            button.onclick = function () {
+                activities[index].completed = true;
+                displayActivities();
+            };
+
+            div.appendChild(span);
+            div.appendChild(button);
+            activityList.appendChild(div);
+        });
+
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const completedCount = activities.filter(a => a.completed).length;
+        progressText.textContent = completedCount + " out of " + activities.length + " activities completed";
+    }
+
+    displayActivities();
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
